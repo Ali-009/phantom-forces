@@ -29,14 +29,13 @@ function redrawFigures(div, index){
      div.querySelector('.feature-text-container').remove()
      //Recreating the removed figure element that will contain both an image and a caption
      const featureFigure = document.createElement('figure')
-     featureFigure.classList.toggle('feature-figure-container')
-     //Creating the image to display inside the figure
      const featureImg = new Image()
-     featureImg.src = featureText[index].imagePath
-     //Creatign a figcaption for the figure
      const featureCaption = document.createElement('figcaption')
+     //Defining the created elements
+     featureFigure.classList.toggle('feature-figure-container')
+     featureImg.src = featureText[index].imagePath
      featureCaption.textContent = featureText[index].title
-     //Appending the elements to their appropriate parent
+     //Appending the new elements
      div.appendChild(featureFigure)
      featureFigure.appendChild(featureImg)
      featureFigure.appendChild(featureCaption)
@@ -51,21 +50,18 @@ featureDivs.forEach((div, index) => {
             if(boxToRecreate){
                 redrawFigures(boxToRecreate.parentNode, +boxToRecreate.parentNode.getAttribute('id'))
             }
-            //If there is a figure, it should be removed when the user clicks it
+            //If the user clicked a figure, remove it
             div.querySelector('figure').remove()
-            //Creating a container for the featureTitle and the featureList
+            //Creating a container element that will contain feature elements
             const featureTextContainer = document.createElement('div')
-            featureTextContainer.classList.toggle('feature-text-container')
-            //Creating a featureTitle
             const featureTitle = document.createElement('h3')
-            featureTitle.textContent = featureText[index].title
-            //Create a paragraph to contian the featureHeading alongisde the featureList
             const featureParagraph = document.createElement('p')
+            const featureList = document.createElement('ul')
+            //Defining the created elements
+            featureTextContainer.classList.toggle('feature-text-container')
+            featureTitle.textContent = featureText[index].title
             featureParagraph.textContent = featureText[index].featureTagline
             //featureListItems is an array of list items that will be appended to a featureList
-            //featureList is an unordered list
-            const featureList = document.createElement('ul')
-            //Create an array of features
             let featureListItems = []
             for(let i = 0; i < featureText[index].features.length; i++){
                 featureListItems[i] = document.createElement('li')
